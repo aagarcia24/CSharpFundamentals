@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GradeBookConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "Alvaro"
+    }
+  }
+}
