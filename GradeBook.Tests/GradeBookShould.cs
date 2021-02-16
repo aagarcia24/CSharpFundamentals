@@ -7,7 +7,7 @@ namespace GradeBook.Tests
     public class GradeBookShould
     {
         [Fact]
-        public void GetStatisticsShould()
+        public void BookCalculatesAnAverageGrade()
         {
             // Arrange
             var book = new Book("");

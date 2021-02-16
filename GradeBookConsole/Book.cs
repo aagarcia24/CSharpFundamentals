@@ -7,12 +7,12 @@ namespace GradeBookConsole
     public class Book
     {
         private List<double> grades;
-        private string name;
+        public String Name { get; set; }
 
         public Book(string name)
         {
             grades = new List<double>();
-            this.name = name;
+            Name = name;
         }
         public void AddGrade(double grade)
         {
