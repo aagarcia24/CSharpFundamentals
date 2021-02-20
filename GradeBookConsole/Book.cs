@@ -6,6 +6,9 @@ namespace GradeBookConsole
 {
     public class Book
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+        public event GradeAddedDelegate GradeAdded;
+
         private List<double> grades;
         public String Name { get; set; }
 
@@ -15,7 +18,7 @@ namespace GradeBookConsole
             Name = name;
         }
 
-        public void AddLetterGrade(char letter)
+        public void AddGrade(char letter)
         {
             switch (letter)
             {
@@ -40,7 +43,11 @@ namespace GradeBookConsole
         {
             if (grade >= 0 && grade <= 100)
             {
-                grades.Add(grade); 
+                grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
