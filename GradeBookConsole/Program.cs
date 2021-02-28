@@ -7,8 +7,23 @@ namespace GradeBookConsole
     {
         public static void Main(string[] args)
         {
-            var book = new Book("");
+            IBook book = new DiskBook("Alvaro's Grade Book");
             book.GradeAdded += OnGradeAdded;
+
+            EnterGrades(book);
+            var stats = book.GetStatistics();
+
+            Console.WriteLine("\nCalculating...\n");
+            Console.WriteLine(InMemoryBook.CATEGORY);
+            Console.WriteLine($"For the book named {book.Name}");
+            Console.WriteLine($"The lowest grade is: {stats.Low}");
+            Console.WriteLine($"The highest grade is: {stats.High}");
+            Console.WriteLine($"The average grade is: {stats.Average:N1}");
+            Console.WriteLine($"The letter grade is: {stats.Letter}");
+        }
+
+        private static void EnterGrades(IBook book)
+        {
             var done = false;
             var input = "";
 
@@ -33,14 +48,6 @@ namespace GradeBookConsole
                 else
                     Console.WriteLine("You did not enter a valid value. Try again...\n");
             }
-
-            var stats = book.GetStatistics();
-
-            Console.WriteLine("\nCalculating...\n");
-            Console.WriteLine($"The lowest grade is: {stats.Low}");
-            Console.WriteLine($"The highest grade is: {stats.High}");
-            Console.WriteLine($"The average grade is: {stats.Average:N1}");
-            Console.WriteLine($"The letter grade is: {stats.Letter}");
         }
 
         public static void OnGradeAdded(object sender, EventArgs args)
